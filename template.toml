@@ -1,0 +1,52 @@
+name = "Starknet project template"
+description = "A template to get started with a Starknet project on the right foot"
+kickstart_version = 1
+ignore = [".gitignore", "README.md", "LICENSE"]
+
+cleanup = [
+    { name = "license", value = "None", paths = [
+        "{{project_name}}/LICENSE",
+    ] },
+    { name = "on_github", value = false, paths = [
+        "{{project_name}}/.github/workflows/build.yml",
+        "{{project_name}}/.github/workflows/test.yml",
+    ] },
+]
+
+[[variables]]
+name = "project_name"
+default = "starknet_contracts"
+prompt = "What's the name of the project?"
+validation = "^([a-zA-Z][a-zA-Z0-9_]+)$"
+
+[[variables]]
+name = "description"
+default = "An awesome Starknet project"
+prompt = "A short description of the app?"
+
+[[variables]]
+name = "author"
+default = "No One"
+prompt = "What is your name?"
+
+[[variables]]
+name = "email"
+default = "no@one.com"
+prompt = "What is your email?"
+
+[[variables]]
+name = "license"
+default = "MIT"
+prompt = "Which open-source license do you want to use?"
+choices = ["MIT", "BSD", "GPLv3", "None"]
+
+[[variables]]
+name = "on_github"
+default = true
+prompt = "Will the project be hosted on GitHub?"
+
+[[variables]]
+name = "gh_username"
+default = ""
+prompt = "What is your GitHub username?"
+only_if = { name = "on_github", value = true }

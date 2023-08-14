@@ -1,0 +1,28 @@
+[package]
+name = "{{project_name}}"
+version = "0.1.0"
+{% if license != "None" -%}
+license = "{{license}}"
+{%- endif %}
+authors = []
+keywords = []
+description = "{{description}}"
+
+{% if on_github -%}
+
+repository = "https://github.com/{{gh_username}}/{{project_name}}"
+
+{%- endif %}
+
+[[target.starknet-contract]]
+sierra = true
+casm = true
+
+[dependencies]
+# TODO: Make Starknet version configurable
+starknet = ">=2.1.0"
+# TODO: Make alexandria dependency optional
+alexandria_data_structures = { git = "https://github.com/keep-starknet-strange/alexandria.git" }
+
+[tool.snforge]
+exit_first = false
